@@ -1,13 +1,13 @@
 #!/bin/bash
 
-function modify_relay_config():
+function modify_relay_config() {
     key = ${1}
     value = ${2}
     if [ -z "${key}"] || [ -z "${value}"]; then
         echo "you have to set both key and value" && exit 1
     fi
     postconf -e "${key} = ${value}"
-
+}
 modify_relay_config myhostname "${MAILCOW_HOSTNAME}"
 modify_relay_config mydomain "${MAILCOW_DOMAIN}"
 modify_relay_config relayhost "[${MAILCOW_IP:-172.22.1.253}]:${SMTPS_PORT}"
