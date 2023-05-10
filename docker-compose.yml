@@ -1,0 +1,9 @@
+version: "2.4"
+
+services:
+  mailcow-postfix-gateway:
+    env_file:
+      - ./.env
+    build: ./build
+    ports:
+      - "${GATEWAY_SMTP_PORT:-25}:25"
