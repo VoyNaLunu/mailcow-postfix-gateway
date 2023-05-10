@@ -3,7 +3,7 @@
 function modify_relay_config() {
     key=${1}
     value=${2}
-    if [ -z "${key}"] || [ -z "${value}"]; then
+    if [ -z "${key}" ] || [ -z "${value}" ]; then
         echo "you have to set both key and value" && exit 1
     fi
     postconf -e "${key} = ${value}"
