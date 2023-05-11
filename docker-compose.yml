@@ -6,4 +6,13 @@ services:
       - ./.env
     build: ./build
     ports:
-      - "${GATEWAY_SMTP_PORT:-25}:25"
+        #default: - 100.64.0.1:25:25
+      - "127.0.0.1:${GATEWAY_SMTP_PORT:-25}:25"
+        #default: - 51820:51820/udp
+      - "${WG_PORT:-51820}:51820/udp" #doesn't work without /udp https://github.com/moby/moby/issues/15127
+    cap_add:
+      - NET_ADMIN
+    networks:
+      mailcow-network:
+        aliases:
+          - postfix-gateway
