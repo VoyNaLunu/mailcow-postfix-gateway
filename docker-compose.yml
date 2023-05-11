@@ -4,7 +4,7 @@ services:
   gateway-postfix:
     env_file:
       - ./.env
-    build: ./build-postfix
+    build: ./build/postfix
     image: mailcow-gateway-postfix:0.3
     networks:
       mailcow-network:
@@ -14,7 +14,7 @@ services:
   gateway-vpn:
     env_file:
       - ./.env
-    build: ./build-wireguard
+    build: ./build/wireguard
     image: mailcow-gateway-wireguard:0.3
     volumes:
       - ./wg0.conf:/etc/wireguard/wg0.conf
