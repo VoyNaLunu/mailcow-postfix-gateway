@@ -4,7 +4,6 @@ LABEL "maintainer"="https://github.com/VoyNaLunu"
 LABEL "version"="0.3"
 
 WORKDIR /etc/wireguard
-COPY . .
 
 RUN apk update \
     && \
@@ -16,9 +15,9 @@ RUN apk update \
     ip6tables \
     bind-tools \
     && \
-    rm -rf /var/cache/apk/* \
-    && \
-    chmod +x ./entrypoint.sh
+    rm -rf /var/cache/apk/*
+
+COPY . .
 
 EXPOSE 51820
 

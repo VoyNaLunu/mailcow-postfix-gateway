@@ -5,26 +5,30 @@ services:
     env_file:
       - ./.env
     build: ./build-postfix
+    image: mailcow-gateway-postfix:0.3
     networks:
-      test-network:
+      mailcow-network:
         aliases:
-          - gateway-postfix #can add but not change, wireguard container relies on this to resolve ip for iptables
+          - gateway-postfix #can add alias but not change first, wireguard container relies on this to resolve ip for iptables
 
   gateway-vpn:
     env_file:
       - ./.env
     build: ./build-wireguard
+    image: mailcow-gateway-wireguard:0.3
+    volumes:
+      - ./wg0.conf:/etc/wireguard/wg0.conf
     ports:
         #default: - 51820:51820/udp
       - "${GATEWAY_WG_PORT:-51820}:51820/udp" #doesn't work without /udp https://github.com/moby/moby/issues/15127
-
-        #default: - 100.64.0.1:25:25
-      - "${GATEWAY_WG_NETWORK:-100.64.0}.1:${GATEWAY_SMTP_PORT:-25}:25"
     cap_add:
       - NET_ADMIN
     networks:
-      test-network:
+      mailcow-network:
         aliases:
           - gateway-vpn
-    depends_on:
-      - gateway-postfix
+
+networks:
+  mailcow-network:
+    name: mailcow-dockerized_mailcow-network
+    external: true

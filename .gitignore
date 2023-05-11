@@ -2,3 +2,4 @@
 main.cf
 privatekey
 publickey
+wg0.conf

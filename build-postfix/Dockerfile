@@ -4,7 +4,7 @@ LABEL "maintainer"="https://github.com/VoyNaLunu"
 LABEL "version"="0.3"
 
 WORKDIR /app/
-COPY . .
+
 RUN echo "wireguard" >> /etc/modules \
     && \
     apk update \
@@ -19,9 +19,9 @@ RUN echo "wireguard" >> /etc/modules \
     postfix \
     wireguard-tools \
     && \
-    rm -rf /var/cache/apk/* \
-    && \
-    chmod +x ./entrypoint.sh
+    rm -rf /var/cache/apk/*
+
+COPY . .
 
 EXPOSE 25
 
