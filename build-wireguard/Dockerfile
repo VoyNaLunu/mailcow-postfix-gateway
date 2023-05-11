@@ -1,0 +1,27 @@
+FROM alpine:3.18
+
+LABEL "maintainer"="https://github.com/VoyNaLunu"
+LABEL "version"="0.3"
+
+WORKDIR /etc/wireguard
+COPY . .
+
+RUN echo "wireguard" >> /etc/modules \
+    && \
+    apk update \
+    && \
+    apk add --no-cache \
+    bash \
+    wireguard-tools \
+    net-tools \
+    iptables \
+    ip6tables \
+    bind-tools \
+    && \
+    rm -rf /var/cache/apk/* \
+    && \
+    chmod +x ./entrypoint.sh
+
+EXPOSE 51820
+
+ENTRYPOINT [ "./entrypoint.sh" ]
