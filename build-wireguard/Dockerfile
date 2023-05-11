@@ -6,9 +6,7 @@ LABEL "version"="0.3"
 WORKDIR /etc/wireguard
 COPY . .
 
-RUN echo "wireguard" >> /etc/modules \
-    && \
-    apk update \
+RUN apk update \
     && \
     apk add --no-cache \
     bash \
