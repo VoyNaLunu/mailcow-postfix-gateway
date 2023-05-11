@@ -16,8 +16,6 @@ services:
       - ./.env
     build: ./build/wireguard
     image: mailcow-gateway-wireguard:0.3
-    volumes:
-      - ./wg0.conf:/etc/wireguard/wg0.conf
     ports:
         #default: - 51820:51820/udp
       - "${GATEWAY_WG_PORT:-51820}:51820/udp" #doesn't work without /udp https://github.com/moby/moby/issues/15127
