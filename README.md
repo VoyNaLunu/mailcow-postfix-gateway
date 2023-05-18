@@ -36,10 +36,7 @@ gateway-postfix provides unauthenticated and unencrypted access to mailcow-postf
 >>
 >> you should see similar output:
 >>
->> `Trying 100.64.0.1...`
->>
->> `Connected to 100.64.0.1.`
->>
->> `Escape character is '^]'.`
->>
->> `220 mail.example.com ESMTP Postfix`
+>> `Trying 100.64.0.1...`   
+`Connected to 100.64.0.1.`  
+`Escape character is '^]'.`     
+`220 mail.example.com ESMTP Postfix`
