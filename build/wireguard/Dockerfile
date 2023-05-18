@@ -1,7 +1,7 @@
 FROM alpine:3.18
 
 LABEL "maintainer"="https://github.com/VoyNaLunu"
-LABEL "version"="0.3"
+LABEL "version"="0.4"
 
 WORKDIR /etc/wireguard
 
