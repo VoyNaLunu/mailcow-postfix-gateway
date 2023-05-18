@@ -9,7 +9,7 @@ services:
     networks:
       mailcow-network:
         aliases:
-          - gateway-postfix #can add alias but not change first, wireguard container relies on this to resolve ip for iptables
+          - gateway-postfix #can add aliases but not change this one, wireguard container relies on this to resolve ip for iptables
 
   gateway-vpn:
     env_file:
@@ -30,5 +30,5 @@ services:
 
 networks:
   mailcow-network:
-    name: mailcow-dockerized_mailcow-network
+    name: ${MAILCOW_NETWORK_NAME}
     external: true
