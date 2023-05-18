@@ -3,3 +3,4 @@ main.cf
 privatekey
 publickey
 wg0.conf
+docker-compose.override.yml
