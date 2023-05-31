@@ -26,6 +26,7 @@ iptables -t nat -A PREROUTING -i wg0 -p tcp --dport ${GATEWAY_SMTP_PORT:-25} -j 
 
 wg && echo -e "\n"
 
+trap "echo 'stopping container...'" EXIT
 while true
 do
     wg=$(wg)
